@@ -44,7 +44,7 @@ export default function SubmitPage() {
     ];
     const isAllowed =
       allowed.includes(f.type) || /\.(pdf|docx?|DOCX?)$/.test(f.name);
-    const isUnder10MB = f.size <= 10 * 1024 * 1024;
+    const isUnder50MB = f.size <= 50 * 1024 * 1024;
 
     if (!isAllowed) {
       setToast({
@@ -53,10 +53,10 @@ export default function SubmitPage() {
       });
       return;
     }
-    if (!isUnder10MB) {
+    if (!isUnder50MB) {
       setToast({
         type: "error",
-        message: "File too large. Max size is 10 MB.",
+        message: "File too large. Max size is 50 MB.",
       });
       return;
     }
@@ -229,7 +229,7 @@ export default function SubmitPage() {
                   <span className="font-semibold text-white"> browse</span>
                 </p>
                 <p className="text-xs text-white/50">
-                  Max 10 MB • PDF, DOC, DOCX
+                  Max 50 MB • PDF, DOC, DOCX
                 </p>
                 <input
                   id="file"
